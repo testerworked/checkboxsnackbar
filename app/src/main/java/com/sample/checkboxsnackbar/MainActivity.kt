@@ -15,7 +15,7 @@ import com.google.android.material.snackbar.Snackbar
 class MainActivity : AppCompatActivity() {
 
     private lateinit var textET: EditText
-    private lateinit var outputTextView: TextView
+    private lateinit var textResult: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,16 +23,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         textET = findViewById(R.id.textET)
-        outputTextView = findViewById(R.id.outputTextView)
+        textResult = findViewById(R.id.resultTV)
 
-        val saveButton = findViewById<Button>(R.id.saveButton)
-        saveButton.setOnClickListener {
+        val saveB = findViewById<Button>(R.id.saveB)
+        saveB.setOnClickListener {
             saveData()
         }
 
-        val deleteButton = findViewById<Button>(R.id.deleteButton)
-        deleteButton.setOnClickListener {
-            showDeleteDialog()
+        val deleteB = findViewById<Button>(R.id.deleteB)
+        deleteB.setOnClickListener {
+            deleteWidget()
         }
         
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -43,20 +43,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun saveData() {
-        val inputText = textET.text.toString()
-        outputTextView.text = outputTextView.text.toString()+ "\n" + inputText
+        val inputData = textET.text.toString()
+        textResult.text = textResult.text.toString()+ "\n" + inputData
     }
 
-    private fun showDeleteDialog() {
-        val builder = AlertDialog.Builder(this)
-        builder.setMessage("Подтвердите удаление")
+    private fun deleteWidget() {
+        val buildWidget = AlertDialog.Builder(this)
+        buildWidget.setMessage("Подтвердите удаление")
             .setPositiveButton("Удалить", DialogInterface.OnClickListener { dialog, id ->
-                outputTextView.text = ""
+                textResult.text = ""
                 Snackbar.make(findViewById(android.R.id.content), "Данные удалены", Snackbar.LENGTH_SHORT).show()
             })
             .setNegativeButton("Отмена", DialogInterface.OnClickListener { dialog, id ->
                 dialog.dismiss()
             })
-        builder.create().show()
+        buildWidget.create().show()
     }
 }

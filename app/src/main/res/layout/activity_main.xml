@@ -19,27 +19,27 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/saveButton"
+        android:id="@+id/saveB"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/save_data"
-        app:layout_constraintTop_toBottomOf="@+id/outputTextView"
+        app:layout_constraintTop_toBottomOf="@+id/resultTV"
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/deleteButton"
+        android:id="@+id/deleteB"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/delete_data"
-        app:layout_constraintTop_toBottomOf="@+id/saveButton"
+        app:layout_constraintTop_toBottomOf="@+id/saveB"
         tools:layout_editor_absoluteX="57dp" />
 
     <TextView
-        android:id="@+id/outputTextView"
+        android:id="@+id/resultTV"
         android:layout_width="match_parent"
         android:layout_height="280dp"
         android:paddingTop="16dp"
-        android:text="Данные для сохранения"
+        android:text=""
         android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@+id/textET"
         tools:ignore="MissingConstraints"
