@@ -2,6 +2,7 @@ package com.sample.checkboxsnackbar
 
 import android.content.DialogInterface
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -25,16 +26,6 @@ class MainActivity : AppCompatActivity() {
         textET = findViewById(R.id.textET)
         textResult = findViewById(R.id.resultTV)
 
-        val saveB = findViewById<Button>(R.id.saveB)
-        saveB.setOnClickListener {
-            saveData()
-        }
-
-        val deleteB = findViewById<Button>(R.id.deleteB)
-        deleteB.setOnClickListener {
-            deleteWidget()
-        }
-        
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -42,21 +33,31 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveData() {
+    fun saveData(view: View) {
         val inputData = textET.text.toString()
         textResult.text = textResult.text.toString()+ "\n" + inputData
+        Snackbar
+            .make(
+                view,
+                "Данные сохранены",
+                Snackbar.LENGTH_LONG
+            ).show()
     }
 
-    private fun deleteWidget() {
-        val buildWidget = AlertDialog.Builder(this)
-        buildWidget.setMessage("Подтвердите удаление")
-            .setPositiveButton("Удалить", DialogInterface.OnClickListener { dialog, id ->
-                textResult.text = ""
-                Snackbar.make(findViewById(android.R.id.content), "Данные удалены", Snackbar.LENGTH_SHORT).show()
-            })
-            .setNegativeButton("Отмена", DialogInterface.OnClickListener { dialog, id ->
-                dialog.dismiss()
-            })
-        buildWidget.create().show()
+    fun checkDelete(view: View){
+        Snackbar
+            .make(
+            view,
+            "Подтвердите удаление",
+            Snackbar.LENGTH_LONG
+        ).setAction("Удалить") {
+            textResult.text = ""
+            Snackbar.make(
+                view,
+                "Данные удалены",
+                Snackbar.LENGTH_LONG
+            ).show()
+        }.show()
     }
+
 }

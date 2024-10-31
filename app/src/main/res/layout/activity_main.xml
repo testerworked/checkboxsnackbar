@@ -20,14 +20,17 @@
 
     <Button
         android:id="@+id/saveB"
+        android:onClick="saveData"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/save_data"
         app:layout_constraintTop_toBottomOf="@+id/resultTV"
         tools:ignore="MissingConstraints" />
 
+
     <Button
         android:id="@+id/deleteB"
+        android:onClick="checkDelete"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/delete_data"
@@ -44,5 +47,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textET"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
